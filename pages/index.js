@@ -20,7 +20,7 @@ export default function Home(props) {
 	return (
 		<div className={styles.container}>
 			<Head>
-				<title>Coffee Connoisseur</title>
+				<title>Coffee Stories</title>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<main className={styles.main}>

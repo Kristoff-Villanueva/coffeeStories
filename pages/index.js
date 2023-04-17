@@ -4,11 +4,11 @@ import { Inter } from "next/font/google";
 import Banner from "@/components/banner";
 import Image from "next/image";
 import Card from "@/components/card";
-import coffeeStores from "../data/coffee-stores.json";
+import coffeeStoresData from "../data/coffee-stores.json";
 
 export async function getStaticProps(context) {
 	return {
-		props: { coffeeStores },
+		props: { coffeeStores: coffeeStoresData },
 	};
 }
 
@@ -36,20 +36,25 @@ export default function Home(props) {
 						alt="girl drinking coffee"
 					/>
 				</div>
-				<div className={styles.cardLayout}>
-					{coffeeStores.map((cafe) => {
-						return (
-							<Card
-								key={cafe.id}
-								name={cafe.name}
-								imgUrl={cafe.imgUrl}
-								href={cafe.websiteUrl}
-								alt={cafe.neighbourhood}
-								className={styles.card}
-							/>
-						);
-					})}
-				</div>
+				{props.coffeeStores.length > 0 && (
+					<>
+						<h2 className={styles.heading2}>Toronto Stores</h2>
+						<div className={styles.cardLayout}>
+							{props.coffeeStores.map((cafe) => {
+								return (
+									<Card
+										key={cafe.id}
+										name={cafe.name}
+										imgUrl={cafe.imgUrl}
+										href={cafe.websiteUrl}
+										alt={cafe.neighbourhood}
+										className={styles.card}
+									/>
+								);
+							})}
+						</div>
+					</>
+				)}
 			</main>
 		</div>
 	);

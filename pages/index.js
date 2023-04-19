@@ -46,7 +46,7 @@ export default function Home(props) {
 										key={cafe.id}
 										name={cafe.name}
 										imgUrl={cafe.imgUrl}
-										href={cafe.websiteUrl}
+										href={`/coffee-store/${cafe.id}`}
 										alt={cafe.neighbourhood}
 										className={styles.card}
 									/>

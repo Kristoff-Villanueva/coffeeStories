@@ -5,10 +5,15 @@ import Banner from "@/components/banner";
 import Image from "next/image";
 import Card from "@/components/card";
 import coffeeStoresData from "../data/coffee-stores.json";
+import { fetchCoffeeStore } from "@/lib/coffee-stores";
+
+const { getCode, getName } = require("country-list");
 
 export async function getStaticProps(context) {
+	const coffeeStores = await fetchCoffeeStore();
+
 	return {
-		props: { coffeeStores: coffeeStoresData },
+		props: { coffeeStores },
 	};
 }
 
@@ -16,6 +21,8 @@ export default function Home(props) {
 	const handleOnBannerClick = () => {
 		console.log("Hi banner button");
 	};
+
+	console.log(props.coffeeStores);
 
 	return (
 		<div className={styles.container}>
@@ -38,16 +45,18 @@ export default function Home(props) {
 				</div>
 				{props.coffeeStores.length > 0 && (
 					<>
-						<h2 className={styles.heading2}>Toronto Stores</h2>
+						<h2 className={styles.heading2}>
+							{getName(props.coffeeStores[0].location.country)} Stores
+						</h2>
 						<div className={styles.cardLayout}>
 							{props.coffeeStores.map((cafe) => {
 								return (
 									<Card
-										key={cafe.id}
+										key={cafe.fsq_id}
 										name={cafe.name}
-										imgUrl={cafe.imgUrl}
-										href={`/coffee-store/${cafe.id}`}
-										alt={cafe.neighbourhood}
+										imgUrl={coffeeStoresData[0].imgUrl}
+										href={`/coffee-store/${cafe.fsq_id}`}
+										alt={cafe.locality}
 										className={styles.card}
 									/>
 								);

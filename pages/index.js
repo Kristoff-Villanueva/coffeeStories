@@ -54,7 +54,7 @@ export default function Home(props) {
 									<Card
 										key={cafe.fsq_id}
 										name={cafe.name}
-										imgUrl={coffeeStoresData[0].imgUrl}
+										imgUrl={cafe.imgUrl}
 										href={`/coffee-store/${cafe.fsq_id}`}
 										alt={cafe.locality}
 										className={styles.card}

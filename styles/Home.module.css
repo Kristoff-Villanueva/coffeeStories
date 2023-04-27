@@ -16,7 +16,7 @@
 .heroImage {
 	position: absolute;
 	top: 0px;
-	z-index: inherit;
+	z-index: 1;
 }
 
 .cardLayout {

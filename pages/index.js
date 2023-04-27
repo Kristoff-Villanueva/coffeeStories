@@ -52,11 +52,11 @@ export default function Home(props) {
 							{props.coffeeStores.map((cafe) => {
 								return (
 									<Card
-										key={cafe.fsq_id}
+										key={cafe.id}
 										name={cafe.name}
 										imgUrl={cafe.imgUrl}
-										href={`/coffee-store/${cafe.fsq_id}`}
-										alt={cafe.locality}
+										href={`/coffee-store/${cafe.id}`}
+										alt={cafe.location.locality}
 										className={styles.card}
 									/>
 								);

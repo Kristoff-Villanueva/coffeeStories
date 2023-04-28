@@ -16,7 +16,7 @@ export async function getStaticProps(staticProps) {
 	return {
 		props: {
 			coffeeStore: coffeeStores.find((coffeeStore) => {
-				return coffeeStore.fsq_id.toString() === params.id;
+				return coffeeStore.id.toString() === params.id;
 			}),
 		},
 	};
@@ -25,7 +25,7 @@ export async function getStaticProps(staticProps) {
 export async function getStaticPaths() {
 	const coffeeStores = await fetchCoffeeStore();
 	const paths = coffeeStores.map((coffeeStore) => {
-		return { params: { id: coffeeStore.fsq_id.toString() } };
+		return { params: { id: coffeeStore.id.toString() } };
 	});
 
 	return {
@@ -42,7 +42,7 @@ const CoffeeStore = (props) => {
 		return <div>Loading...</div>;
 	}
 
-	const { location, name, imgUrl, categories } = props.coffeeStore;
+	const { address, postcode, name, imgUrl, categories } = props.coffeeStore;
 
 	const handleUpVoteButton = () => {
 		console.log("handle button");
@@ -56,7 +56,7 @@ const CoffeeStore = (props) => {
 			<div className={styles.container}>
 				<div className={styles.col1}>
 					<div className={styles.backToHomeLink}>
-						<Link href="/">Back to Home</Link>
+						<Link href="/">← Back to Home</Link>
 					</div>
 					<div className={styles.nameWrapper}>
 						<h1 className={styles.name}>{name}</h1>
@@ -77,9 +77,7 @@ const CoffeeStore = (props) => {
 							height="24"
 							alt="places icon"
 						/>
-						<p className={styles.text}>
-							{location.address || location.formatted_address}
-						</p>
+						<p className={styles.text}>{address || "no address available"}</p>
 					</div>
 					<div className={styles.iconWrapper}>
 						<Image

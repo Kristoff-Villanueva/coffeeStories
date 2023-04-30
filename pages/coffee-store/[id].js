@@ -11,8 +11,6 @@ export async function getStaticProps(staticProps) {
 	const params = staticProps.params;
 	const coffeeStores = await fetchCoffeeStore();
 
-	console.log("coffeeStores: ", coffeeStores);
-
 	return {
 		props: {
 			coffeeStore: coffeeStores.find((coffeeStore) => {

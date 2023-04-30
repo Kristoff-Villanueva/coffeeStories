@@ -16,7 +16,7 @@
 .heroImage {
 	position: absolute;
 	top: 0px;
-	z-index: inherit;
+	z-index: 1;
 }
 
 .cardLayout {
@@ -36,6 +36,10 @@
 	padding-bottom: 2rem;
 	margin-top: 2rem;
 	color: white;
+}
+
+.locationErrorMsg {
+	color: red;
 }
 
 /** Breakpoints:
